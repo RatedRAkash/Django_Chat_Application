@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import JobsView from '../views/jobs/JobsView.vue'
 import JobDetaisView from '../views/jobs/JobDetailsView.vue'
+import ChatRoomView from '../views/chats/ChatRoom.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 
 const routes = [
@@ -33,6 +34,13 @@ const routes = [
   {
     path: '/all-jobs',
     redirect: '/jobs',
+  },
+
+  {
+    path: '/chat',
+    name: 'chat_room',
+    component: ChatRoomView,
+    props: true
   },
 
   // catchAll 404 Routes

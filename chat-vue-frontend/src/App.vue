@@ -2,12 +2,9 @@
   <nav>
     <router-link to="/">Home</router-link> |    <!-- Normal `href` Tag use nah kore `router-link` TAG ta use korle VUE shei Request ke intercept kore and nijei shei route ee niye jabe without Network Call to SERVER -->
     <router-link :to="{ name:'about' }">About</router-link> |
-    <router-link to="/jobs">Jobs</router-link>
+    <router-link to="/jobs">Jobs</router-link> |
+    <router-link to="/chat">Chat</router-link>
   </nav>
-
-  <div id="app">
-    <ChatRoom />
-  </div>
 
   <button @click="redirect_to">Redirect</button>
   <button @click="go_back">Go Back</button>
@@ -20,11 +17,9 @@
 </template>
 
 <script>
-import ChatRoom from './components/ChatRoom.vue';
 
 export default {
   components: {
-    ChatRoom,
   },
   methods: {
     redirect_to(){

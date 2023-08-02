@@ -1,0 +1,86 @@
+{% extends 'registerApp/base.html' %}
+{% load static %}
+{% block title %}{{ single_room.name }} | {% endblock %}
+
+{% block head_content %}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+          rel="stylesheet">
+
+    <link href="{% static 'css/single_room_chat.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3 class="heading text-center">{{ single_room.name }}</h3>
+        <div class="messaging">
+            <div class="inbox_msg">
+                <div class="mesgs">
+                    <div class="chat-messages" id="chat-messages">
+                        {% for m in messages %}
+                            {% if m.user.username == request.user.username %}
+                                <div class="outgoing_msg">
+                                    <div class="sent_msg">
+                                        <span>{{ m.user.username }} (Me)</span>
+                                        <p> {{ m.content }}</p>
+                                        <span class="time_date"> 11:01 AM    |    June 9</span>
+                                    </div>
+                                </div>
+
+                            {% else %}
+                                <div class="incoming_msg">
+                                    <div class="incoming_msg_img"><img
+                                            src="https://ptetutorials.com/images/user-profile.png"
+                                            alt="sunil"></div>
+                                    <div class="received_msg">
+                                        <div class="received_withd_msg">
+                                            <span>{{ m.user.username }}</span>
+                                            <p> {{ m.content }}</p>
+                                            <span class="time_date"> 11:01 AM    |    June 9</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="lg:w mt-6 mb-6 mx-4 lg:mx-auto p-4 bg-white rounded-xl">
+            <form method="post" action="." class="flex">
+                <input type="text" name="content" class="flex-1 mr-3" placeholder="Your message..."
+                       id="chat-message-input">
+
+                <button
+                        class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700"
+                        id="chat-message-submit">Submit
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ single_room.slug|json_script:"json-roomname" }}
+    {{ request.user.username|json_script:"json-username" }}
+
+    <script>
+        // Define a global JavaScript variable to hold the user data
+        var currentUser = {
+            username: "{{ request.user.username }}",
+            email: "{{ request.user.email }}",
+        };
+    </script>
+
+    {#  To Connect to Chat room with `WebSocket` object of Javascript #}
+    <script src="{% static 'js/single_room_chat.js' %}"></script>
+{% endblock %}

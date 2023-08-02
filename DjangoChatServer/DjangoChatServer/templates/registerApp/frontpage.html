@@ -1,0 +1,14 @@
+{% extends 'registerApp/base.html' %}
+
+{% block title %}Welcome | {% endblock %}
+
+{% block content %}
+    <div class="p-10 lg:p-20 text-center">
+        <h1 class="text-3xl lg:text-6xl text-white">Djangochat</h1>
+        {% if request.user.is_authenticated %}
+            <h6>Welcome {{ request.user.username }}</h6>
+        {% else %}
+            <h6>Please Login/SignUp</h6>
+        {% endif %}
+    </div>
+{% endblock %}

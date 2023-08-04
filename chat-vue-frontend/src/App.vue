@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |    <!-- Normal `href` Tag use nah kore `router-link` TAG ta use korle VUE shei Request ke intercept kore and nijei shei route ee niye jabe without Network Call to SERVER -->
+    <router-link to="/">Home</router-link> |    <!-- Normal `href` Tag use nah kore...`router-link` TAG ta use korle VUE shei Request ke intercept kore and nijei shei route ee niye jabe without Network Call to SERVER -->
     <router-link :to="{ name:'about' }">About</router-link> |
     <router-link to="/jobs">Jobs</router-link> |
     <router-link to="/chat">Chat</router-link>
@@ -12,13 +12,14 @@
 
 
   <!-- `router-view` TAG ta jei Route ee gese shei Route er COMPONENT ke automatic Import korte pare -->
-  <router-view/>
+  <router-view></router-view>
 
 </template>
 
 <script>
 
 export default {
+  name: 'App',
   components: {
   },
   methods: {

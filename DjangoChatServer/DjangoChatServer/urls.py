@@ -21,4 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('registerApp.urls')),
     path('rooms/', include('chatApp.urls')),
+
+    # API Path of Travello
+    path('api/', include('chatApp.api_urls')),
 ]

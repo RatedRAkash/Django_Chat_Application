@@ -39,7 +39,9 @@ const routes = [
   {
     path: '/chat',
     name: 'chat_room',
-    component: ChatRoomView,
+    components: {
+      default: ChatRoomView,
+    },
     props: true
   },
 

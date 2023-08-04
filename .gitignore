@@ -101,4 +101,5 @@ django_docker_project/templates/travello/index_old.html
 celerybeat.pid
 django_docker_project/e-learniverse-project-firebase-adminsdk.json
 
-identifier.sqlite
+DjangoChatServer/identifier.sqlite
+DjangoChatServer/db.sqlite3

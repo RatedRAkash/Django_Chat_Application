@@ -2,7 +2,6 @@
   <div>
     <!-- Your chat interface UI here -->
     <button @click="sendMessage">Send Message</button>
-
     <div class="container">
       <h3 class="heading text-center">Office</h3>
       <div class="messaging">
@@ -11,7 +10,7 @@
             <div class="chat-messages" id="chat-messages">
               <div class="outgoing_msg">
                 <div class="sent_msg">
-                  <span>AKash(Me)</span>
+                  <span>Akash(Me)</span>
                   <p> Hello</p>
                   <span class="time_date"> 11:01 AM | June 9</span>
                 </div>
@@ -84,6 +83,7 @@ export default {
 </script>
 
 <style>
+
 body {
   font-family: sans-serif !important;
 }

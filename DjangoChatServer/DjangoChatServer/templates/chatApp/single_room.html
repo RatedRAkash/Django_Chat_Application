@@ -1,5 +1,6 @@
 {% extends 'registerApp/base.html' %}
 {% load static %}
+{% load tz %}
 {% block title %}{{ single_room.name }} | {% endblock %}
 
 {% block head_content %}
@@ -26,7 +27,7 @@
                                     <div class="sent_msg">
                                         <span>{{ m.user.username }} (Me)</span>
                                         <p> {{ m.content }}</p>
-                                        <span class="time_date"> 11:01 AM    |    June 9</span>
+                                        <span class="time_date">{{ m.created_at }}</span>
                                     </div>
                                 </div>
 
@@ -39,7 +40,7 @@
                                         <div class="received_withd_msg">
                                             <span>{{ m.user.username }}</span>
                                             <p> {{ m.content }}</p>
-                                            <span class="time_date"> 11:01 AM    |    June 9</span>
+                                            <span class="time_date">{{ m.created_at }}</span>
 
                                         </div>
                                     </div>
@@ -72,14 +73,6 @@
 {% block scripts %}
     {{ single_room.slug|json_script:"json-roomname" }}
     {{ request.user.username|json_script:"json-username" }}
-
-{#    <script>#}
-{#        // Define a global JavaScript variable to hold the user data#}
-{#        var currentUser = {#}
-{#            username: "{{ user.username }}",#}
-{#            email: "{{ user.email }}",#}
-{#        };#}
-{#    </script>#}
 
     <script>
         // Pass the current user's username to JavaScript

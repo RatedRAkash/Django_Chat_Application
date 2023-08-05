@@ -19,6 +19,8 @@ console.log("Current Email:", currentEmail);
 chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
     if (data.message) {
+        currentDate = new Date().toLocaleDateString()
+
         if (data.username === currentUser) {
             console.log("CurrentUser Message")
             document.querySelector('#chat-messages').innerHTML +=
@@ -26,7 +28,7 @@ chatSocket.onmessage = function (e) {
                 <div class="sent_msg">
                   <span>${data.username} (Me)</span>
                   <p>${data.message}</p>
-                  <span class="time_date">11:01 AM | June 9</span>
+                  <span class="time_date">${currentDate}</span>
                 </div>
               </div>`;
         }else{
@@ -38,7 +40,7 @@ chatSocket.onmessage = function (e) {
                               <div class="received_withd_msg">
                                   <span>${data.username}</span>
                                      <p>${data.message}</p>
-                                       <span class="time_date"> 11:01 AM    |    June 9</span>
+                                       <span class="time_date">${currentDate}</span>
                                        </div>
                                     </div>
                 </div>`;

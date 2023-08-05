@@ -73,12 +73,18 @@
     {{ single_room.slug|json_script:"json-roomname" }}
     {{ request.user.username|json_script:"json-username" }}
 
+{#    <script>#}
+{#        // Define a global JavaScript variable to hold the user data#}
+{#        var currentUser = {#}
+{#            username: "{{ user.username }}",#}
+{#            email: "{{ user.email }}",#}
+{#        };#}
+{#    </script>#}
+
     <script>
-        // Define a global JavaScript variable to hold the user data
-        var currentUser = {
-            username: "{{ request.user.username }}",
-            email: "{{ request.user.email }}",
-        };
+        // Pass the current user's username to JavaScript
+        var currentUser = "{{ user.username }}";
+        var currentEmail = "{{ user.email }}";
     </script>
 
     {#  To Connect to Chat room with `WebSocket` object of Javascript #}

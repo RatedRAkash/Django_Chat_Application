@@ -1,8 +1,7 @@
-from . api_views import *
 from django.urls import path, include
 
 from rest_framework.routers import DefaultRouter
-from api_views import *
+from .api_views import *
 
 player_router = DefaultRouter()
 

@@ -13,22 +13,37 @@ chatSocket.onclose = function (e) {
     console.log('onclose')
 }
 
-console.log({
-    'username': currentUser.userName,
-    'email': currentUser.email
-})
+console.log("Current User:", currentUser);
+console.log("Current Email:", currentEmail);
 
 chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
     if (data.message) {
-        document.querySelector('#chat-messages').innerHTML +=
-            `<div class="outgoing_msg">
+        if (data.username === currentUser) {
+            console.log("CurrentUser Message")
+            document.querySelector('#chat-messages').innerHTML +=
+                `<div class="outgoing_msg">
                 <div class="sent_msg">
                   <span>${data.username} (Me)</span>
                   <p>${data.message}</p>
                   <span class="time_date">11:01 AM | June 9</span>
                 </div>
               </div>`;
+        }else{
+            console.log("Outside User Message")
+            document.querySelector('#chat-messages').innerHTML +=
+                `<div class="incoming_msg">
+                     <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
+                          <div class="received_msg">
+                              <div class="received_withd_msg">
+                                  <span>${data.username}</span>
+                                     <p>${data.message}</p>
+                                       <span class="time_date"> 11:01 AM    |    June 9</span>
+                                       </div>
+                                    </div>
+                </div>`;
+        }
+
     } else {
         alert('The message was empty!')
     }

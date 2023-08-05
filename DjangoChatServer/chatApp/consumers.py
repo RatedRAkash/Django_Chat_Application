@@ -1,7 +1,7 @@
 import json
 from channels.generic.websocket import WebsocketConsumer, AsyncWebsocketConsumer
 from asgiref.sync import async_to_sync, sync_to_async
-from chatApp.models import Room,Message
+from .models import Room, Message
 from django.contrib.auth.models import User
 
 class MyChatWebSocketConsumer(WebsocketConsumer):

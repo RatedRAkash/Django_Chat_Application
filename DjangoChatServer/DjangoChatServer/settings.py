@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:6006", #FrontEnd er URL eikane dibo jaate kore FrontEnd CORS bypass korte pare
+    "http://localhost:6060", #FrontEnd er URL eikane dibo jaate kore FrontEnd CORS bypass korte pare
 ]
 
 MIDDLEWARE = [
@@ -83,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -147,9 +148,9 @@ DEFAULT_CHARSET = 'utf-8'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-MEDIA_URL = "http://0.0.0.0:8000/media/"
+MEDIA_URL = "/media/"
 STATIC_ROOT = "dist/static/"
-MEDIA_ROOT = "/home/akash/PSL_Projects/Demo/DjangoChatServer/other_files/Media"
+MEDIA_ROOT = os.path.join(BASE_DIR , 'other_files/media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

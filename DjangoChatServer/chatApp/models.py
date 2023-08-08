@@ -7,6 +7,12 @@ class Room(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
 
+
+    # eita mane Backend ee naile Object Save korle <Object(...)> eivabe SAVE korbe... jeita amra chai Nah...
+    # so, amra Object jeno dekhte "name" er moto DB te dekhay tai __str__(self) function use kora huise
+    def __str__(self):
+        return self.name
+
 class Message(models.Model):
     room = models.ForeignKey(Room, related_name='messages', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='messages', on_delete=models.CASCADE)

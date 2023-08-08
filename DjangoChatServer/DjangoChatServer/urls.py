@@ -22,6 +22,10 @@ urlpatterns = [
     path('', include('registerApp.urls')),
     path('rooms/', include('chatApp.urls')),
 
-    # API Path of Travello
+    # API Path of chatApp
     path('api/', include('chatApp.api_urls')),
+
+    # API Path of Authentication
+    path('api/v1', include('djoser.urls')),
+    path('api/v1', include('djoser.urls.authtoken')),
 ]

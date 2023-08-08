@@ -1,4 +1,4 @@
-# chat-vue-frontend
+# vue-chat-app-frontend
 
 ## Project setup
 ```

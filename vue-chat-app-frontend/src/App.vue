@@ -1,18 +1,46 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |    <!-- Normal `href` Tag use nah kore...`router-link` TAG ta use korle VUE shei Request ke intercept kore and nijei shei route ee niye jabe without Network Call to SERVER -->
-    <router-link :to="{ name:'about' }">About</router-link> |
-    <router-link to="/jobs">Jobs</router-link> |
-    <router-link to="/chat">Chat</router-link>
+  <div id="wrapper">
+  <nav class="navbar is-dark">
+
+    <div class="navbar-brand">
+      <router-link to="/" class="navbar-item"><strong>Home</strong></router-link>    <!-- Normal `href` Tag use nah kore...`router-link` TAG ta use korle VUE shei Request ke intercept kore and nijei shei route ee niye jabe without Network Call to SERVER -->
+      <a class="navbar-burger" @click="showMobileMenu = !showMobileMenu" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
+      <div class="navbar-end">
+        <router-link to="/summer" class="navbar-item">Summer</router-link>
+        <router-link to="/winter" class="navbar-item">Winter</router-link>
+
+        <div class="navbar-item">
+          <div class="buttons">
+            <router-link to="/log-in" class="button is-light">Log In</router-link>
+
+            <router-link to="/cart" class="button is-success">
+              <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+              <span>Cart</span>
+            </router-link>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </nav>
 
-  <button @click="redirect_to">Redirect</button>
-  <button @click="go_back">Go Back</button>
-  <button @click="go_forward">Go Forward</button>
+    <section class="section">
+      <!-- `router-view` TAG ta jei Route ee gese shei Route er COMPONENT ke automatic Import korte pare -->
+      <router-view/>
+    </section>
 
+    <footer class="footer">
+      <p class="has-text-centered">Copyright (Akash) 2023</p>
+    </footer>
 
-  <!-- `router-view` TAG ta jei Route ee gese shei Route er COMPONENT ke automatic Import korte pare -->
-  <router-view></router-view>
+  </div>
 
 </template>
 
@@ -22,50 +50,17 @@ export default {
   name: 'App',
   components: {
   },
-  methods: {
-    redirect_to(){
-      this.$router.push({name:'home'})
-    },
-    go_back(){
-      this.$router.go(-1)
-    },
-    go_forward(){
-      this.$router.go(+1)
+  data(){
+    return {
+      showMobileMenu: false,
     }
+  },
+  methods: {
+
   },
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-nav a.router-link-exact-active {
-  color: crimson;
-  background: #42b983;
-}
-
-button {
-  margin: 0 10px;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-}
+<style lang="scss">
+@import "../node_modules/bulma";
 </style>

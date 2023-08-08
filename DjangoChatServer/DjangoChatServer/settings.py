@@ -50,10 +50,11 @@ INSTALLED_APPS = [
 
     'chatApp',
     'registerApp',
+    'productApp',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http//localhost:7070", #FrontEnd er URL eikane dibo jaate kore FrontEnd CORS bypass korte pare
+    "http://localhost:6006", #FrontEnd er URL eikane dibo jaate kore FrontEnd CORS bypass korte pare
 ]
 
 MIDDLEWARE = [

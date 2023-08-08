@@ -4,4 +4,5 @@ from .models import Category, Product
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
+        # fields we want to show in th `API`
         fields = ("id","name","get_absolute_url","description","price","get_image","get_thumbnail")

@@ -28,6 +28,8 @@
           </figure>
           <h3 class="is-size-4">{{single_product.name}}</h3>
           <p class="is-size-6 has-text-grey">{{single_product.price}}</p>
+
+          <router-link v-bind:to="single_product.get_absolute_url" class="button is-dark mt-4">View Details</router-link>
         </div>
 
       </div>

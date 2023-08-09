@@ -44,7 +44,9 @@
 
         <div class="navbar-item">
           <div class="buttons">
-            <router-link to="/log-in" class="button is-light">Log In</router-link>
+            <router-link to="/login" class="button is-light">Log In</router-link>
+            <router-link to="/signup" class="button is-light">Sign Up</router-link>
+            <router-link to="/logout" class="button is-light">Log Out</router-link>
 
             <router-link to="/cart" class="button is-success">
               <span class="icon"><i class="fas fa-shopping-cart"></i></span>

@@ -1,13 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
+
 import JobsView from '../views/jobs/JobsView.vue'
 import JobDetaisView from '../views/jobs/JobDetailsView.vue'
+
 import ChatRoomView from '../views/chats/ChatRoom.vue'
+
 import ProductView from '../views/products/ProductView.vue'
 import CategoryView from '../views/products/CategoryView.vue'
 import SearchView from '../views/products/SearchView.vue'
 import CartView from '../views/products/CartView.vue'
+
+import LoginView from "../views/logins/LoginView.vue";
+import RegisterView from "../views/logins/RegisterView.vue";
+import LogoutView from "../views/logins/LogoutView.vue";
 
 import NotFoundView from '../views/NotFoundView.vue'
 
@@ -23,6 +30,22 @@ const routes = [
     component: AboutView
     // component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginView
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: LogoutView
+  },
+  {
+    path: '/signup',
+    name: 'Register',
+    component: RegisterView
+  },
+
   {
     path: '/jobs',
     name: 'jobs',

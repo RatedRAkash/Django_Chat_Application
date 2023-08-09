@@ -105,6 +105,8 @@ DjangoChatServer/identifier.sqlite
 DjangoChatServer/db.sqlite3
 DjangoChatServer/other_files
 
+DjangoChatServer/**/__pycache__/
+
 .DS_Store
 node_modules
 /dist

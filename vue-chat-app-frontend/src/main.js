@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueRouter from 'vue-router';
+import store from './store';   // Import your Vuex store configuration
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap';
@@ -9,4 +10,10 @@ import $ from 'jquery';
 import axios from "axios";
 
 axios.defaults.baseURL = 'http://localhost:7070'
-createApp(App).use(router).mount('#app')
+const app = createApp(App)
+// Use the router and store & MUST .use before MOUTING to (#app)
+app.use(router);
+app.use(store);
+
+// Mount the app
+app.mount('#app');

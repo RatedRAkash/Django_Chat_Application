@@ -11,6 +11,8 @@ export default createStore({
   },
   getters: {
   },
+
+  // .commit(Synchronous kaaj kore sudhu)
   mutations: {
     initializeStore(state){
       if(localStorage.getItem('cart')){
@@ -32,6 +34,8 @@ export default createStore({
       localStorage.setItem('cart', JSON.stringify(state.cart))
     }
   },
+
+  // .dispatch(Asynchronous+Synchronous kaaj kore)
   actions: {
   },
   modules: {

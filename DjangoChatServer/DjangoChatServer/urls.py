@@ -26,4 +26,7 @@ urlpatterns = [
     path('api/v1/', include('djoser.urls.authtoken')),
     path('api/v1/', include('productApp.api_urls')),
 
+    # Registration Through API
+    path('api/', include('registerApp.api_urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

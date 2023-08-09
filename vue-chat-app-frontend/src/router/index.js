@@ -6,6 +6,7 @@ import JobDetaisView from '../views/jobs/JobDetailsView.vue'
 import ChatRoomView from '../views/chats/ChatRoom.vue'
 import ProductView from '../views/products/ProductView.vue'
 import CategoryView from '../views/products/CategoryView.vue'
+import SearchView from '../views/products/SearchView.vue'
 
 import NotFoundView from '../views/NotFoundView.vue'
 
@@ -58,9 +59,17 @@ const routes = [
 
   //single Category View Route
   {
-    path: '/:category_slug/',
+    path: '/:category_slug',
     name: 'Category',
     component: CategoryView,
+    props: true
+  },
+
+  //single Category View Route
+  {
+    path: '/search',
+    name: 'Search',
+    component: SearchView,
     props: true
   },
 

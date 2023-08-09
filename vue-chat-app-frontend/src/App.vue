@@ -12,6 +12,32 @@
     </div>
 
     <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
+
+      <!--     SEARCH BUTTON -->
+      <div class="navbar-start">
+        <div class="navbar-item">
+
+          <!--    eikane action="/search" VUE er Route ke Point kortese... kono BACKEND er URL ke NAH -->
+          <form method="get" action="/search">
+            <div class="field has-addons">
+              <div class="control">
+                <input type="text" class="input" placeholder="What are you looking for?" name="query"> <!-- eikane name="query" dewa... mane FORM Submit korle "{BASE_URL}/?name=..." eivabe boshbe -->
+              </div>
+
+              <div class="control">
+                <button class="button is-success">
+                      <span class="icon">
+                      <i class="fas fa-search"></i>
+                      </span>
+                </button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+      <!--     HAMBURGER MENU -->
       <div class="navbar-end">
         <router-link to="/summer" class="navbar-item">Summer</router-link>
         <router-link to="/winter" class="navbar-item">Winter</router-link>

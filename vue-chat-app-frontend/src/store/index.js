@@ -7,7 +7,7 @@ export default createStore({
     },
     isAuthenticated: false,
     token: '',
-    isLoading: true
+    isLoading: false
   },
   getters: {
   },

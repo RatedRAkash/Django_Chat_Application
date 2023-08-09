@@ -7,6 +7,7 @@ import ChatRoomView from '../views/chats/ChatRoom.vue'
 import ProductView from '../views/products/ProductView.vue'
 import CategoryView from '../views/products/CategoryView.vue'
 import SearchView from '../views/products/SearchView.vue'
+import CartView from '../views/products/CartView.vue'
 
 import NotFoundView from '../views/NotFoundView.vue'
 
@@ -70,6 +71,14 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: SearchView,
+    props: true
+  },
+
+  //single Category View Route
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: CartView,
     props: true
   },
 

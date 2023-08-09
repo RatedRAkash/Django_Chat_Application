@@ -59,8 +59,11 @@ export default {
     this.getLatestProducts()
   },
   methods:{
-    getLatestProducts() {
-      axios
+
+    // jehetu Loading dekhabo tai function ta ke `async` kore raklam
+    async getLatestProducts() {
+      this.$store.commit('setIsLoading', true)
+      await axios
           .get('api/v1/latest-products')
           .then(responseObj =>{
             this.latestProducts = responseObj.data
@@ -69,6 +72,7 @@ export default {
           .catch(errorObj =>{
             console.log(errorObj)
           })
+      this.$store.commit('setIsLoading', false)
     }
   }
 }

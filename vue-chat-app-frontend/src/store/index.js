@@ -7,7 +7,7 @@ export default createStore({
     },
     isAuthenticated: false,
     token: '',
-    isLoading: false
+    isLoading: true
   },
   getters: {
   },
@@ -32,7 +32,11 @@ export default createStore({
       }
 
       localStorage.setItem('cart', JSON.stringify(state.cart))
-    }
+    },
+
+    setIsLoading(state, loadingStatus){
+      state.isLoading = loadingStatus
+    },
   },
 
   // .dispatch(Asynchronous+Synchronous kaaj kore)

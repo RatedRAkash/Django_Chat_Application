@@ -51,10 +51,14 @@ export default {
     this.getProduct()
   },
   methods:{
-    getProduct() {
+    // jehetu Loading dekhabo tai function ta ke `async` kore raklam
+     async getProduct() {
+      this.$store.commit('setIsLoading', true)
+
       const category_slug = this.$route.params.category_slug
       const product_slug = this.$route.params.product_slug
-      axios
+
+       await axios
           .get(`api/v1/products/${category_slug}/${product_slug}`)
           .then(responseObj =>{
             this.product = responseObj.data
@@ -63,6 +67,8 @@ export default {
           .catch(errorObj =>{
             console.log(errorObj)
           })
+
+      this.$store.commit('setIsLoading', false)
     },
 
     addToCart() {

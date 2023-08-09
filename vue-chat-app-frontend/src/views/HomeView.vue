@@ -18,21 +18,11 @@
       </div>
 
   <!--  Start of v-FOR Loop -->
-      <div class="column is-3"
+      <ProductBoxComponent
         v-for="single_product in latestProducts"
-           v-bind:title="single_product.id">
-
-        <div class="box">
-          <figure class="image mb-4">
-            <img :src="single_product.get_thumbnail">
-          </figure>
-          <h3 class="is-size-4">{{single_product.name}}</h3>
-          <p class="is-size-6 has-text-grey">{{single_product.price}}</p>
-
-          <router-link v-bind:to="single_product.get_absolute_url" class="button is-dark mt-4">View Details</router-link>
-        </div>
-
-      </div>
+           v-bind:key="single_product.id"
+           v-bind:product_obj="single_product">
+      </ProductBoxComponent>
   <!-- End of v-FOR Loop -->
 
     </div>
@@ -44,11 +34,12 @@
 // @ is an alias to /src
 
 import axios from "axios";
+import ProductBoxComponent from "@/components/ProductBoxComponent.vue";
 
 export default {
   name: 'HomeView',
   components: {
-
+    ProductBoxComponent,
   },
   data(){
     return {
@@ -78,11 +69,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .image{
-    margin-top: -1.25rem;
-    margin-left: -1.25rem;
-    margin-right: -1.25rem;
-  }
-</style>

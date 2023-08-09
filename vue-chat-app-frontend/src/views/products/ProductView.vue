@@ -63,6 +63,7 @@ export default {
           .then(responseObj =>{
             this.product = responseObj.data
             console.log(responseObj)
+            document.title =  this.product.name + '| DjangoChat'
           })
           .catch(errorObj =>{
             console.log(errorObj)

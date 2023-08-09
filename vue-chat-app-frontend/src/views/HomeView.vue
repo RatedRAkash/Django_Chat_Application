@@ -56,6 +56,7 @@ export default {
     }
   },
   mounted() {
+    document.title = 'Home | DjangoChat'
     this.getLatestProducts()
   },
   methods:{

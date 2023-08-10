@@ -22,11 +22,8 @@ class AllRoomsApiView(APIView):
 
     def get(self, request):
         rooms = Room.objects.all()
-
-        room_serialized = RoomSerializer(rooms, many=True)
-
-        json_data = JSONRenderer().render(room_serialized.data)
-        return HttpResponse(json_data, content_type="application/json")
+        room_serializer = RoomSerializer(rooms, many=True)
+        return Response(room_serializer.data, content_type="application/json")
         # return JsonResponse(room_serialized.data, safe=False) #Above Two Lines can be written just by Using JsonResponse
 
     def post(self, request):
@@ -36,3 +33,20 @@ class AllRoomsApiView(APIView):
             return Response({'msg':'Data Created'}, status=status.HTTP_201_CREATED)
         else:
             return Response(room_serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MessagesOfARoom(APIView):
+    authentication_classes = [JWTAuthentication]  # JwtAuthentication is Needed
+    permission_classes = [IsAuthenticated]  # Allow access to all users, authenticated or not
+
+    api_name = "api/message_of_a_room"
+
+    def get(self, request, room_slug):
+        room = Room.objects.get(slug=room_slug)
+        messages = room.messages.all()
+        msg_serializer = MessageSerializer(messages, many=True)
+        return Response(msg_serializer.data, content_type="application/json")
+
+    # Don't Need POST Method as User will `post` messages through WEBSOCKET Api
+    def post(self, request):
+        pass

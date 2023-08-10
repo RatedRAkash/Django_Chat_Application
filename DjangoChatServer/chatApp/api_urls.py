@@ -11,4 +11,5 @@ urlpatterns = [
     #  ***************** "api/" Prefix is already defined in MainApp of Django Project ******************
     # Destination API
     path('rooms', AllRoomsApiView.as_view(), name = AllRoomsApiView.api_name),
+    path('<str:room_slug>/messages', MessagesOfARoom.as_view(), name = MessagesOfARoom.api_name),
 ]

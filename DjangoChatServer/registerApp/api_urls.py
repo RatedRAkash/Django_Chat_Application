@@ -9,7 +9,7 @@ urlpatterns = [
     path('logout', UserLogoutView.as_view(), name='logout'),
 
     # JWT(Json Web Token) Url Paths
-    path('gettoken', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('gettoken', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refreshtoken', TokenRefreshView.as_view(), name='token_refresh'),
     path('verifytoken', TokenVerifyView.as_view(), name='token_verify'),
 ]

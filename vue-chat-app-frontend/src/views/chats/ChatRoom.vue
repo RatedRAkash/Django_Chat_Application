@@ -1,35 +1,35 @@
 <template>
   <div>
     <!-- Your chat interface UI here -->
-    <button @click="sendMessage">Send Message</button>
     <div class="container">
-      <h3 class="heading text-center">Office</h3>
+      <h3 class="heading text-center">{{room_slug}}</h3>
       <div class="messaging">
         <div class="inbox_msg">
           <div class="mesgs">
-            <div class="chat-messages" id="chat-messages">
-              <div class="outgoing_msg">
+            <div class="chat-messages" id="chat-messages"
+            v-for="single_message in messages_list"
+            v-bind:key="single_message.id">
+              <div v-if="userInfo.user.id===single_message.user.id" class="outgoing_msg">
                 <div class="sent_msg">
-                  <span>Akash(Me)</span>
-                  <p> Hello</p>
-                  <span class="time_date"> 11:01 AM | June 9</span>
+                  <span>{{single_message.user.username}}(Me)</span>
+                  <p>{{single_message.content}}</p>
+                  <span class="time_date">{{single_message.created_at}}</span>
                 </div>
               </div>
 
-              <div class="incoming_msg">
+              <div v-else class="incoming_msg">
                 <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                 </div>
                 <div class="received_msg">
                   <div class="received_withd_msg">
-                    <span>Ramos(Me)</span>
-                    <p> You are Great</p>
-                    <span class="time_date"> 11:01 AM | June 9</span>
-
+                    <span>{{single_message.user.username}}</span>
+                    <p>{{single_message.content}}</p>
+                    <span class="time_date">{{single_message.created_at}}</span>
                   </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
 
@@ -37,7 +37,7 @@
 
       <div class="lg:w mt-6 mb-6 mx-4 lg:mx-auto p-4 bg-white rounded-xl">
         <form @submit.prevent="sendMessage" class="flex">
-          <input type="text" name="content" class="flex-1 mr-3" placeholder="Your message..." id="chat-message-input">
+          <input v-model="new_submit_message" type="text" name="content" class="flex-1 mr-3" placeholder="Your message..." id="chat-message-input">
 
           <button class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700" id="chat-message-submit">Submit
           </button>
@@ -55,13 +55,20 @@ export default {
   data() {
     return {
       socket: null,
+      room_slug: null,
       messages_list: [],
+      userInfo: null,
+      new_submit_message: ''
     };
   },
   mounted() {
     this.getAllMessages()
   },
   created() {
+    const storedUserInfo = localStorage.getItem('user-info');
+    // Parse the JSON string back to an object
+    this.userInfo = JSON.parse(storedUserInfo);
+
     // Connect to the Django WebSocket URL
     const webSocketUrl = 'ws://localhost:7070/ws/office/';
     this.socket = new WebSocket(webSocketUrl);
@@ -76,22 +83,24 @@ export default {
     sendMessage(message) {
       // Send a message to the Django WebSocket
       const messageData = {
-        'message': "Hello",
-        'username': "admin",
-        'room': "office"
+        'message': this.new_submit_message,
+        'username': this.userInfo.user.username,
+        'room': this.room_slug
         // Add any other required data
       };
       this.socket.send(JSON.stringify(messageData));
       console.log(messageData)
+      this.getAllMessages()
+      this.new_submit_message = ''
     },
 
     async getAllMessages() {
-      // this.$store.commit('setIsLoading', true)
+      this.$store.commit('setIsLoading', true)
 
-      const room_slug = this.$route.params.room_slug
+      this.room_slug = this.$route.params.room_slug
 
       await axios
-          .get(`api/room/${room_slug}/messages`)
+          .get(`api/room/${this.room_slug}/messages`)
           .then(responseObj =>{
             this.messages_list = responseObj.data
             console.log(responseObj.data)
@@ -101,7 +110,7 @@ export default {
             console.log(errorObj)
           })
 
-      // this.$store.commit('setIsLoading', false)
+      this.$store.commit('setIsLoading', false)
     },
   },
 };

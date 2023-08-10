@@ -42,30 +42,36 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await axios.post("/api/login", {
-          username: this.username,
-          password: this.password,
-        });
-        // const authToken = response.data.token;
-        const credentials = `${this.username}:${this.password}`;
-        const encodedCredentials = btoa(credentials); // Encode credentials to Base64
+        // const response = await axios.post("/api/login", {
+        //   username: this.username,
+        //   password: this.password,
+        // });
+        // // const authToken = response.data.token;
+        // const credentials = `${this.username}:${this.password}`;
+        // const encodedCredentials = btoa(credentials); // Encode credentials to Base64
+        //
+        // const basicAuth = `Basic ${encodedCredentials}`
+        //
+        // localStorage.setItem('basicAuth', basicAuth);
+        //
+        // // Set the Authorization header for all subsequent requests
+        // axios.defaults.headers.common['Authorization'] = basicAuth;
 
-        const basicAuth = `Basic ${encodedCredentials}`
-
-        localStorage.setItem('basicAuth', basicAuth);
-
-        // Set the Authorization header for all subsequent requests
-        axios.defaults.headers.common['Authorization'] = basicAuth;
-
-        console.log(response.data);
+        // console.log(response.data);
 
         const jwt_response = await axios.post("/api/gettoken", {
           username: this.username,
           password: this.password,
         });
 
-        localStorage.setItem('jwt-token', jwt_response.data.access);
+        // localStorage.setItem('jwt-access-token', jwt_response.data.access);
+        // localStorage.setItem('jwt-refresh-token', jwt_response.data.refresh);
+        localStorage.setItem('user-info', JSON.stringify(jwt_response.data));
         console.log(jwt_response.data);
+
+
+        // Set the Authorization header for all subsequent requests
+        axios.defaults.headers.common['Authorization'] = jwt_response.data.access;
 
         this.$router.push('/'); // Redirect to HOME Page
 

@@ -25,7 +25,11 @@ export default {
         });
         console.log(response.data);
 
-        localStorage.removeItem('basicAuth'); // Remove BasicAuth from local storage
+        // localStorage.removeItem('basicAuth'); // Remove BasicAuth from local storage
+        // localStorage.removeItem('jwt-access-token')
+        // localStorage.removeItem('jwt-refresh-token')
+        localStorage.removeItem('user-info');
+
         delete axios.defaults.headers.common['Authorization'];
         this.$router.push('/login'); // Redirect to Login Page
 

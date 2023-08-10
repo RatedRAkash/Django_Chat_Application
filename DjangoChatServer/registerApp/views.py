@@ -27,16 +27,3 @@ class SignUpView(View):
             return redirect('frontpage')
         else:
             return render(request, 'registerApp/signup.html', {'form': form})
-
-class CustomLoginView(LoginView):
-    def form_invalid(self, form):
-        response = super().form_invalid(form)
-        if self.request.is_ajax():
-            return JsonResponse({'success': False, 'errors': form.errors})
-        return response
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        if self.request.is_ajax():
-            return JsonResponse({'success': True})
-        return response

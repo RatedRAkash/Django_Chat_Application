@@ -55,6 +55,8 @@ export default {
      async getProduct() {
       this.$store.commit('setIsLoading', true)
 
+      const token = localStorage.getItem('jwt-token')
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       const category_slug = this.$route.params.category_slug
       const product_slug = this.$route.params.product_slug
 

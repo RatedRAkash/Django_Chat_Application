@@ -57,9 +57,18 @@ export default {
         // Set the Authorization header for all subsequent requests
         axios.defaults.headers.common['Authorization'] = basicAuth;
 
+        console.log(response.data);
+
+        const jwt_response = await axios.post("/api/gettoken", {
+          username: this.username,
+          password: this.password,
+        });
+
+        localStorage.setItem('jwt-token', jwt_response.data.access);
+        console.log(jwt_response.data);
+
         this.$router.push('/'); // Redirect to HOME Page
 
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }

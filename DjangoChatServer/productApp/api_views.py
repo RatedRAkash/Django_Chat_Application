@@ -8,6 +8,9 @@ from django.db.models import Q
 from .models import Product, Category
 from .serializers import ProductSerializer, CategorySerializer
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 class LatestProductsList(APIView):
     def get(self, request, format=None):
         products = Product.objects.all()[0:6]
@@ -15,6 +18,8 @@ class LatestProductsList(APIView):
         return Response(serializer.data)
 
 class SingleProductDetail(APIView):
+    authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated,)
     def get_object(self, category_slug, product_slug):
         try:
             return Product.objects.filter(category__slug=category_slug).get(slug=product_slug)

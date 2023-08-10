@@ -3,6 +3,7 @@ from registerApp.api_views import *
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 urlpatterns = [
+    # These are for FRONTEND(Vue, React) APIs
     path('signup', UserRegistrationView.as_view(), name='signup'),
     path('login', UserLoginView.as_view(), name='login'),
     path('logout', UserLogoutView.as_view(), name='logout'),

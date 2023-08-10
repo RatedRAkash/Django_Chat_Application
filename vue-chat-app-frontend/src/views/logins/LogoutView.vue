@@ -16,18 +16,12 @@ export default {
   methods: {
     async logout() {
       try {
-        // Get BasicAuth from local storage
-        const basicAuth = localStorage.getItem('basicAuth');
-        axios.defaults.headers.common['Authorization'] = basicAuth;
-
         const response = await axios.post("/api/logout",{
 
         });
         console.log(response.data);
 
         // localStorage.removeItem('basicAuth'); // Remove BasicAuth from local storage
-        // localStorage.removeItem('jwt-access-token')
-        // localStorage.removeItem('jwt-refresh-token')
         localStorage.removeItem('user-info');
 
         delete axios.defaults.headers.common['Authorization'];

@@ -66,19 +66,18 @@ const routes = [
   },
 
   {
-    path: '/room/:room_slug',
-    name: 'chat_room',
-    components: {
-      default: ChatRoom,
-    },
-    props: true
-  },
-
-  {
     path: '/rooms',
     name: 'Room',
     components: {
       default: RoomView,
+    },
+    props: true
+  },
+  {
+    path: '/rooms/:room_slug',
+    name: 'chat_room',
+    components: {
+      default: ChatRoom,
     },
     props: true
   },

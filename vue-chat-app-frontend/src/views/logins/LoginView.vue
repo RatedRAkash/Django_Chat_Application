@@ -69,9 +69,8 @@ export default {
         localStorage.setItem('user-info', JSON.stringify(jwt_response.data));
         console.log(jwt_response.data);
 
-
         // Set the Authorization header for all subsequent requests
-        axios.defaults.headers.common['Authorization'] = jwt_response.data.access;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${jwt_response.data.access}`;
 
         this.$router.push('/'); // Redirect to HOME Page
 

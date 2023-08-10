@@ -7,6 +7,7 @@ from rest_framework.permissions import *
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -46,7 +47,8 @@ class UserLoginView(generics.CreateAPIView):
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 class UserLogoutView(generics.CreateAPIView):
-    permission_classes = (IsAuthenticated,)
+    authentication_classes = [JWTAuthentication]  # JwtAuthentication is Needed
+    permission_classes = [IsAuthenticated]  # Allow access to all users, authenticated or not
 
     def post(self, request):
         # request.user.auth_token.delete()

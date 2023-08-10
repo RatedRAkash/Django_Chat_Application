@@ -1,107 +1,53 @@
 <template>
-  <div>
-    <!-- Your chat interface UI here -->
-    <button @click="sendMessage">Send Message</button>
-    <div class="container">
-      <h3 class="heading text-center">Office</h3>
-      <div class="messaging">
-        <div class="inbox_msg">
-          <div class="mesgs">
-            <div class="chat-messages" id="chat-messages">
-              <div class="outgoing_msg">
-                <div class="sent_msg">
-                  <span>Akash(Me)</span>
-                  <p> Hello</p>
-                  <span class="time_date"> 11:01 AM | June 9</span>
-                </div>
-              </div>
+  <div class="p-10 lg:p-20 text-center">
+    <h1 class="text-3xl lg:text-6xl text-white">Rooms</h1>
+  </div>
 
-              <div class="incoming_msg">
-                <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                </div>
-                <div class="received_msg">
-                  <div class="received_withd_msg">
-                    <span>Ramos(Me)</span>
-                    <p> You are Great</p>
-                    <span class="time_date"> 11:01 AM | June 9</span>
+  <div class="w-full flex flex-wrap items-center"
+       v-for="single_room in room_list"
+       v-bind:key="single_room.id">
 
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
+    <div class="w-full lg:w-1/4 px-3 py-3">
+      <div class="p-4 bg-white shadow rounded-xl text-center">
+        <h2 class="mb-5 text-2xl font-semibold">{{ single_room.name }}</h2>
+        <!--  (``) eita use kore CUSTOM Variable er agge $ use kore amra v-bind:to=""  er moddhe dite pari-->
+        <router-link v-bind:to=" `room/${single_room.slug}` " class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">View Details</router-link>
       </div>
-
-      <div class="lg:w mt-6 mb-6 mx-4 lg:mx-auto p-4 bg-white rounded-xl">
-        <form @submit.prevent="sendMessage" class="flex">
-          <input type="text" name="content" class="flex-1 mr-3" placeholder="Your message..." id="chat-message-input">
-
-          <button class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700" id="chat-message-submit">Submit
-          </button>
-        </form>
-      </div>
-
     </div>
-
   </div>
 </template>
-  
+
 <script>
 import axios from "axios";
+import ProductBoxComponent from "@/components/ProductBoxComponent.vue";
 export default {
+  components: {ProductBoxComponent},
   data() {
     return {
       socket: null,
-      messages_list: [],
+      room_list: [],
     };
   },
   mounted() {
-    this.getAllMessages()
+    this.getAllRooms()
   },
-  created() {
-    // Connect to the Django WebSocket URL
-    const webSocketUrl = 'ws://localhost:7070/ws/office/';
-    this.socket = new WebSocket(webSocketUrl);
 
-    // Handle incoming messages from the WebSocket
-    this.socket.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      // Process the received message here
-    };
-  },
   methods: {
-    sendMessage(message) {
-      // Send a message to the Django WebSocket
-      const messageData = {
-        'message': "Hello",
-        'username': "admin",
-        'room': "office"
-        // Add any other required data
-      };
-      this.socket.send(JSON.stringify(messageData));
-      console.log(messageData)
-    },
-
-    async getAllMessages() {
-      // this.$store.commit('setIsLoading', true)
-
-      const room_slug = this.$route.params.room_slug
+    async getAllRooms() {
+      this.$store.commit('setIsLoading', true)
 
       await axios
-          .get(`api/room/${room_slug}/messages`)
+          .get(`api/rooms`)
           .then(responseObj =>{
-            this.messages_list = responseObj.data
+            this.room_list = responseObj.data
             console.log(responseObj.data)
-            document.title =  room_slug + '| DjangoChat'
+            document.title =  'Rooms | DjangoChat'
           })
           .catch(errorObj =>{
             console.log(errorObj)
           })
 
-      // this.$store.commit('setIsLoading', false)
+      this.$store.commit('setIsLoading', false)
     },
   },
 };
@@ -312,4 +258,3 @@ img {
   border-bottom: dotted 1px;
 }
 </style>
-  

@@ -5,7 +5,8 @@ import AboutView from '../views/AboutView.vue'
 import JobsView from '../views/jobs/JobsView.vue'
 import JobDetaisView from '../views/jobs/JobDetailsView.vue'
 
-import ChatRoomView from '../views/chats/ChatRoom.vue'
+import ChatRoom from '../views/chats/ChatRoom.vue'
+import RoomView from '../views/chats/RoomView.vue'
 
 import ProductView from '../views/products/ProductView.vue'
 import CategoryView from '../views/products/CategoryView.vue'
@@ -65,10 +66,19 @@ const routes = [
   },
 
   {
-    path: '/chat',
+    path: '/room/:room_slug',
     name: 'chat_room',
     components: {
-      default: ChatRoomView,
+      default: ChatRoom,
+    },
+    props: true
+  },
+
+  {
+    path: '/rooms',
+    name: 'Room',
+    components: {
+      default: RoomView,
     },
     props: true
   },

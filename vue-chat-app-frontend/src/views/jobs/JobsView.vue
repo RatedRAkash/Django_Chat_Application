@@ -19,11 +19,6 @@
 export default {
     data() {
         return {
-            // jobs: [
-            //     { title: "Ninja UX Designer", id: 1, details: "Ux designer Detailed" },
-            //     { title: "Ninja Web Developer", id: 2, details: "website Developer Detailed" },
-            //     { title: "Ninja Vue Developer", id: 3, details: "vue Developer Detailed" },
-            // ]
             jobs: [],
             err_mssg: null,
         }

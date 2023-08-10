@@ -104,7 +104,7 @@ export default {
           .then(responseObj =>{
             this.messages_list = responseObj.data
             console.log(responseObj.data)
-            document.title =  room_slug + '| DjangoChat'
+            document.title =  room_slug + ' | DjangoChat'
           })
           .catch(errorObj =>{
             console.log(errorObj)

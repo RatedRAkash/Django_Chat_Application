@@ -65,7 +65,7 @@
     </div>
 
     <section class="section">
-      <!-- `router-view` TAG ta jei Route ee gese shei Route er COMPONENT ke automatic Import korte pare -->
+      <!-- `router-view` TAG ta jei Route ee gese shei Route er COMPONENT ke automatic Import korte pari tik ei Jaigai -->
       <router-view/>
     </section>
 

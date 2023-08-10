@@ -46,13 +46,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'djoser',
+    'rest_framework_simplejwt',
 
     'chatApp',
     'registerApp',
     'productApp',
 ]
 
+# tik eitar jonno amra "Login, SignUp, LogOut" eigula CALL dite Parbo Nah FRONTEND chara... POSTMAN diyeo Call dite Parbo Nah
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:6060", #FrontEnd er URL eikane dibo jaate kore FrontEnd CORS bypass korte pare
 ]

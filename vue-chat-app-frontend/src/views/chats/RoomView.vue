@@ -1,6 +1,6 @@
 <template>
   <div class="p-10 lg:p-20 text-center">
-    <h1 class="text-3xl lg:text-6xl text-white">Rooms</h1>
+    <h1 class="text-3xl lg:text-6xl text-black">Rooms</h1>
   </div>
 
   <div class="w-full flex flex-wrap items-center"
@@ -18,10 +18,11 @@
 </template>
 
 <script>
+import {toast, ToastPosition, ToastType} from 'bulma-toast'
 import axios from "axios";
-import ProductBoxComponent from "@/components/ProductBoxComponent.vue";
+
 export default {
-  components: {ProductBoxComponent},
+  components: {},
   data() {
     return {
       socket: null,
@@ -45,6 +46,16 @@ export default {
           })
           .catch(errorObj =>{
             console.log(errorObj)
+            if (errorObj.response && errorObj.response.status === 401) {
+              toast({
+                message: 'Please Login',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 2000,
+                position: 'top-center',
+              })
+            }
           })
 
       this.$store.commit('setIsLoading', false)

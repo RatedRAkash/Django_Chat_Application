@@ -16,7 +16,7 @@ export default {
   methods: {
     async logout() {
       try {
-        const response = await axios.post("/api/logout",{
+        const response = await axios.post("/api/v1/logout",{
 
         });
         console.log(response.data);

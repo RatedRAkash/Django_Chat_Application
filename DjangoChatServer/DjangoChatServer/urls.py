@@ -21,12 +21,9 @@ urlpatterns = [
     # API Path of chatApp
     path('api/', include('chatApp.api_urls')),
 
-    # API Path of Authentication
-    path('api/v1/', include('djoser.urls')),
-    path('api/v1/', include('djoser.urls.authtoken')),
-    path('api/v1/', include('productApp.api_urls')),
+    # Registration & Authentication Through API
+    path('api/v1/', include('registerApp.api_urls')),
 
-    # Registration Through API
-    path('api/', include('registerApp.api_urls')),
+    path('api/v1/', include('productApp.api_urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

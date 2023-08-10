@@ -53,7 +53,7 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await axios.post("/api/signup", {
+        const response = await axios.post("/api/v1/signup", {
           username: this.username,
           email: this.email,
           password1: this.password1,

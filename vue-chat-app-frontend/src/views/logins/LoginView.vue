@@ -42,24 +42,24 @@ export default {
   methods: {
     async login() {
       try {
-        // const response = await axios.post("/api/login", {
-        //   username: this.username,
-        //   password: this.password,
-        // });
-        // // const authToken = response.data.token;
-        // const credentials = `${this.username}:${this.password}`;
-        // const encodedCredentials = btoa(credentials); // Encode credentials to Base64
-        //
-        // const basicAuth = `Basic ${encodedCredentials}`
-        //
-        // localStorage.setItem('basicAuth', basicAuth);
-        //
-        // // Set the Authorization header for all subsequent requests
-        // axios.defaults.headers.common['Authorization'] = basicAuth;
+        const response = await axios.post("/api/v1/login", {
+          username: this.username,
+          password: this.password,
+        });
+        // const authToken = response.data.token;
+        const credentials = `${this.username}:${this.password}`;
+        const encodedCredentials = btoa(credentials); // Encode credentials to Base64
 
-        // console.log(response.data);
+        const basicAuth = `Basic ${encodedCredentials}`
 
-        const jwt_response = await axios.post("/api/gettoken", {
+        localStorage.setItem('basicAuth', basicAuth);
+
+        // Set the Authorization header for all subsequent requests
+        axios.defaults.headers.common['Authorization'] = basicAuth;
+
+        console.log(response.data);
+
+        const jwt_response = await axios.post("/api/v1/gettoken", {
           username: this.username,
           password: this.password,
         });

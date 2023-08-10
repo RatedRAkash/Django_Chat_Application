@@ -14,7 +14,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .serializers import UserRegistrationSerializer, UserLoginSerializer
 
-class UserRegistrationView(generics.CreateAPIView):
+class UserRegistrationAPIView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
     permission_classes = (AllowAny,)
@@ -32,7 +32,7 @@ class UserRegistrationView(generics.CreateAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserLoginView(generics.CreateAPIView):
+class UserLoginAPIView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
 
     def post(self, request):
@@ -46,7 +46,7 @@ class UserLoginView(generics.CreateAPIView):
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
-class UserLogoutView(generics.CreateAPIView):
+class UserLogoutAPIView(generics.CreateAPIView):
     authentication_classes = [JWTAuthentication]  # JwtAuthentication is Needed
     permission_classes = [IsAuthenticated]  # Allow access to all users, authenticated or not
 

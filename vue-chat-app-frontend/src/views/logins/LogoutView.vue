@@ -1,7 +1,11 @@
 <template>
   <div>
-    <h2>Logout</h2>
-    <button @click="logout">Logout</button>
+    <div class="bg-black">
+      <div class="p-10 lg:p-20 text-center">
+        <h1 class="text-3xl lg:text-6xl text-white">Logout</h1>
+      </div>
+      <button @click="logout" class="px-5 py-3 mb-4 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Logout</button>
+    </div>
   </div>
 </template>
 
@@ -23,6 +27,7 @@ export default {
 
         localStorage.removeItem('basicAuth'); // Remove BasicAuth from local storage
         delete axios.defaults.headers.common['Authorization'];
+        this.$router.push('/login'); // Redirect to Login Page
 
       } catch (error) {
         console.error(error);

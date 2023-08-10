@@ -17,24 +17,24 @@ import axios from "axios";
 export default {
   data() {
     return {
-      username: "akash",
-      email: "akash@gmail.com",
-      password1: "akash123456",
-      password2: "akash123456",
+      username: "",
+      email: "",
+      password1: "",
+      password2: "",
     };
   },
   methods: {
     async register() {
       try {
-        const response = await axios.post("http://localhost:7070/api/signup", {
+        const response = await axios.post("/api/signup", {
           username: this.username,
           email: this.email,
-          password: this.password1,
-          // password2: this.password2,
+          password1: this.password1,
+          password2: this.password2,
         });
         console.log(response.data);
       } catch (error) {
-        console.error(error);
+        console.error(error.response.data);
       }
     },
   },

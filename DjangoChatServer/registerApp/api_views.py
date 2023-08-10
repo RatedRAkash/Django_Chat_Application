@@ -6,16 +6,25 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, login, logout
 from .serializers import UserSerializer
+import json
 
 class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (AllowAny,)
 
-    def perform_create(self, serializer):
-        user = serializer.save()
-        token, created = Token.objects.get_or_create(user=user)
-        return user
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            token, created = Token.objects.get_or_create(user=user)
+            return Response(
+                {"message": "User registered successfully", "token": token.key, "user": json.dumps(serializer.validated_data)},
+                status=status.HTTP_201_CREATED,
+            )
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserLoginView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
@@ -35,6 +44,6 @@ class UserLogoutView(generics.CreateAPIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        request.user.auth_token.delete()
+        # request.user.auth_token.delete()
         logout(request)
         return Response({'detail': 'Logged out successfully'})

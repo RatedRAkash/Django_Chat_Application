@@ -12,9 +12,18 @@ export default {
   methods: {
     async logout() {
       try {
-        const response = await axios.post("/api/logout");
+        // Get BasicAuth from local storage
+        const basicAuth = localStorage.getItem('basicAuth');
+        axios.defaults.headers.common['Authorization'] = basicAuth;
+
+        const response = await axios.post("/api/logout",{
+
+        });
         console.log(response.data);
-        // Clear the token from local storage or Vuex store
+
+        localStorage.removeItem('basicAuth'); // Remove BasicAuth from local storage
+        delete axios.defaults.headers.common['Authorization'];
+
       } catch (error) {
         console.error(error);
       }

@@ -14,6 +14,7 @@ axiosInstance.interceptors.response.use(
         if (error.response && error.response.status === 401) {
             // router.push('/login'); // Assuming you use Vue Router
             // NotifyUser('You are not authenticated', 'error'); // Show a notification
+            localStorage.removeItem('user-info');
             toast({
                 message: 'Please Login',
                 type: 'is-danger',

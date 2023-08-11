@@ -12,14 +12,14 @@
         <h2 class="mb-5 text-2xl font-semibold">{{ single_room.name }}</h2>
 
         <!--  (``) eita use kore CUSTOM Variable er agge $ use kore amra v-bind:to=""  er moddhe dite pari-->
-        <router-link v-bind:to=" `room/${single_room.slug}` " class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">View Details</router-link>
+        <router-link v-bind:to="`rooms/${single_room.slug}`" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Chat Now</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axiosInstance from "@/axios";
+import axiosInstance from "@/axios.js";
 
 export default {
   components: {},

@@ -54,7 +54,7 @@
 </template>
   
 <script>
-import axios from "axios";
+import axiosInstance from "@/axios.js";
 export default {
   data() {
     return {
@@ -103,7 +103,7 @@ export default {
 
       this.room_slug = this.$route.params.room_slug
 
-      await axios
+      await axiosInstance
           .get(`api/room/${this.room_slug}/messages`)
           .then(responseObj =>{
             this.messages_list = responseObj.data

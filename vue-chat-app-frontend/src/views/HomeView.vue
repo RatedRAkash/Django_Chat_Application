@@ -33,7 +33,7 @@
 <script>
 // @ is an alias to /src
 
-import axios from "axios";
+import axiosInstance from "@/axios.js";
 import ProductBoxComponent from "@/components/ProductBoxComponent.vue";
 
 export default {
@@ -55,7 +55,7 @@ export default {
     // jehetu Loading dekhabo tai function ta ke `async` kore raklam
     async getLatestProducts() {
       this.$store.commit('setIsLoading', true)
-      await axios
+      await axiosInstance
           .get('api/v1/latest-products')
           .then(responseObj =>{
             this.latestProducts = responseObj.data

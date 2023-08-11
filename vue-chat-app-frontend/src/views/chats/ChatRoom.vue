@@ -6,9 +6,12 @@
       <div class="messaging">
         <div class="inbox_msg">
           <div class="mesgs">
+
             <div class="chat-messages" id="chat-messages"
             v-for="single_message in messages_list"
             v-bind:key="single_message.id">
+
+              <!-- if-->
               <div v-if="userInfo.user.id===single_message.user.id" class="outgoing_msg">
                 <div class="sent_msg">
                   <span>{{single_message.user.username}}(Me)</span>
@@ -17,6 +20,7 @@
                 </div>
               </div>
 
+              <!-- else-->
               <div v-else class="incoming_msg">
                 <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                 </div>
@@ -30,9 +34,9 @@
               </div>
 
             </div>
+
           </div>
         </div>
-
       </div>
 
       <div class="lg:w mt-6 mb-6 mx-4 lg:mx-auto p-4 bg-white rounded-xl">

@@ -33,7 +33,7 @@
 
 <script>
 // @ is an alias to /src
-import axios from "axios";
+import axiosInstance from "@/axios";
 import {toast, ToastPosition, ToastType} from 'bulma-toast'
 
 export default {
@@ -56,12 +56,12 @@ export default {
       this.$store.commit('setIsLoading', true)
 
       const token = localStorage.getItem('jwt-token')
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       const category_slug = this.$route.params.category_slug
       const product_slug = this.$route.params.product_slug
 
 
-       await axios
+       await axiosInstance
           .get(`api/v1/products/${category_slug}/${product_slug}`)
           .then(responseObj =>{
             this.product = responseObj.data

@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import axios from "axios";
+import axiosInstance from "@/axios.js";
 
 export default {
   methods: {
     async logout() {
       try {
-        const response = await axios.post("/api/v1/logout",{
+        const response = await axiosInstance.post("/api/v1/logout",{
 
         });
         console.log(response.data);
@@ -24,7 +24,7 @@ export default {
         // localStorage.removeItem('basicAuth'); // Remove BasicAuth from local storage
         localStorage.removeItem('user-info');
 
-        delete axios.defaults.headers.common['Authorization'];
+        delete axiosInstance.defaults.headers.common['Authorization'];
         this.$router.push('/login'); // Redirect to Login Page
 
       } catch (error) {

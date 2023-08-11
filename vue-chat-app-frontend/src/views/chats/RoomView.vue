@@ -10,6 +10,7 @@
     <div class="w-full lg:w-1/4 px-3 py-3">
       <div class="p-4 bg-white shadow rounded-xl text-center">
         <h2 class="mb-5 text-2xl font-semibold">{{ single_room.name }}</h2>
+
         <!--  (``) eita use kore CUSTOM Variable er agge $ use kore amra v-bind:to=""  er moddhe dite pari-->
         <router-link v-bind:to=" `room/${single_room.slug}` " class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">View Details</router-link>
       </div>
@@ -18,8 +19,7 @@
 </template>
 
 <script>
-import {toast, ToastPosition, ToastType} from 'bulma-toast'
-import axios from "axios";
+import axiosInstance from "@/axios";
 
 export default {
   components: {},
@@ -37,7 +37,7 @@ export default {
     async getAllRooms() {
       this.$store.commit('setIsLoading', true)
 
-      await axios
+      await axiosInstance
           .get(`api/rooms`)
           .then(responseObj =>{
             this.room_list = responseObj.data
@@ -46,16 +46,6 @@ export default {
           })
           .catch(errorObj =>{
             console.log(errorObj)
-            if (errorObj.response && errorObj.response.status === 401) {
-              toast({
-                message: 'Please Login',
-                type: 'is-danger',
-                dismissible: true,
-                pauseOnHover: true,
-                duration: 2000,
-                position: 'top-center',
-              })
-            }
           })
 
       this.$store.commit('setIsLoading', false)

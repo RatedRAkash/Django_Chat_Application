@@ -69,22 +69,28 @@ export default {
     this.getAllMessages()
   },
   created() {
-    const storedUserInfo = localStorage.getItem('user-info');
-    // Parse the JSON string back to an object
-    this.userInfo = JSON.parse(storedUserInfo);
-    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${this.userInfo.access}`;
-
-    // Connect to the Django WebSocket URL
-    const webSocketUrl = 'ws://localhost:7070/ws/office/';
-    this.socket = new WebSocket(webSocketUrl);
-
-    // Handle incoming messages from the WebSocket
-    this.socket.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      // Process the received message here
-    };
+    this.setUpInitData()
+    this.setUpWebSocket()
   },
   methods: {
+    setUpInitData(){
+      const storedUserInfo = localStorage.getItem('user-info');
+      // Parse the JSON string back to an object
+      this.userInfo = JSON.parse(storedUserInfo);
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${this.userInfo.access}`;
+    },
+    setUpWebSocket(){
+      // Connect to the Django WebSocket URL
+      const webSocketUrl = 'ws://localhost:7070/ws/office/';
+      this.socket = new WebSocket(webSocketUrl);
+
+      // Handle incoming messages from the WebSocket
+      this.socket.onmessage = (event) => {
+        const message = JSON.parse(event.data);
+        // Process the received message here
+        this.getAllMessages()
+      };
+    },
     sendMessage(message) {
       // Send a message to the Django WebSocket
       const messageData = {
@@ -109,7 +115,7 @@ export default {
           .then(responseObj =>{
             this.messages_list = responseObj.data
             console.log(responseObj.data)
-            document.title =  room_slug + ' | DjangoChat'
+            document.title =  this.room_slug + ' | DjangoChat'
           })
           .catch(errorObj =>{
             console.log(errorObj)

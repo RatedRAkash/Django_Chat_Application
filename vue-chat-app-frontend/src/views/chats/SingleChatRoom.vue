@@ -72,6 +72,7 @@ export default {
     const storedUserInfo = localStorage.getItem('user-info');
     // Parse the JSON string back to an object
     this.userInfo = JSON.parse(storedUserInfo);
+    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${this.userInfo.access}`;
 
     // Connect to the Django WebSocket URL
     const webSocketUrl = 'ws://localhost:7070/ws/office/';

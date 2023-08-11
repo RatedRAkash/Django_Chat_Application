@@ -19,7 +19,7 @@
 
 <script>
 // @ is an alias to /src
-import axios from "axios";
+import axiosInstance from "@/axios.js";
 import {toast, ToastPosition, ToastType} from 'bulma-toast'
 import ProductBoxComponent from "@/components/ProductBoxComponent.vue";
 
@@ -58,7 +58,7 @@ export default {
 
       const category_slug = this.$route.params.category_slug
 
-      await axios
+      await axiosInstance
           .get(`api/v1/products/${category_slug}`)
           .then(responseObj =>{
             this.category = responseObj.data
@@ -67,7 +67,6 @@ export default {
           })
           .catch(errorObj =>{
             console.log(errorObj)
-
             toast({
               message: 'Something went wrong. Please Try Again',
               type: 'is-danger',
@@ -76,7 +75,6 @@ export default {
               duration: 2000,
               position: 'bottom-right',
             })
-
           })
 
       this.$store.commit('setIsLoading', false)

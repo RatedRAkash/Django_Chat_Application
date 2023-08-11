@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axiosInstance from '@/axios.js'
 import ProductBoxComponent from '@/components/ProductBoxComponent.vue'
 
 export default {
@@ -50,7 +50,7 @@ export default {
     async performSearch(){
       this.$store.commit('setIsLoading', true)
 
-      await axios
+      await axiosInstance
           .post(`api/v1/products/search`, {'query':this.query})
           .then(responseObj =>{
             this.productsList = responseObj.data

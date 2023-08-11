@@ -79,6 +79,8 @@
 
 <script>
 
+import axiosInstance from "@/axios";
+
 export default {
   name: 'App',
   components: {
@@ -93,6 +95,16 @@ export default {
   },
   beforeCreate() {
     this.$store.commit('initializeStore')
+
+    const token = this.$store.state.token
+
+    if (localStorage.getItem('user-info')) {
+      // Parse the JSON string back to an object
+      const storedUserInfo = JSON.parse(localStorage.getItem('user-info'))
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${storedUserInfo.access}`;
+    } else {
+      axiosInstance.defaults.headers.common['Authorization'] = "";
+    }
   },
   mounted() {
     this.cart = this.$store.state.cart

@@ -65,20 +65,15 @@ export default {
       new_submit_message: ''
     };
   },
+  created() {
+    this.userInfo = JSON.parse(localStorage.getItem('user-info'));
+    this.setUpWebSocket()
+  },
+
   mounted() {
     this.getAllMessages()
   },
-  created() {
-    this.setUpInitData()
-    this.setUpWebSocket()
-  },
   methods: {
-    setUpInitData(){
-      const storedUserInfo = localStorage.getItem('user-info');
-      // Parse the JSON string back to an object
-      this.userInfo = JSON.parse(storedUserInfo);
-      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${this.userInfo.access}`;
-    },
     setUpWebSocket(){
       // Connect to the Django WebSocket URL
       const webSocketUrl = 'ws://localhost:7070/ws/office/';

@@ -55,16 +55,10 @@ export default {
      async getProduct() {
       this.$store.commit('setIsLoading', true)
 
-      const storedUserInfo = localStorage.getItem('user-info');
-      // Parse the JSON string back to an object
-      const userInfo = JSON.parse(storedUserInfo);
-      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${userInfo.access}`;
-
       const category_slug = this.$route.params.category_slug
       const product_slug = this.$route.params.product_slug
 
-
-       await axiosInstance
+      await axiosInstance
           .get(`api/v1/products/${category_slug}/${product_slug}`)
           .then(responseObj =>{
             this.product = responseObj.data

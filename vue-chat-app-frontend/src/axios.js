@@ -2,9 +2,16 @@
 import axios from 'axios';
 import {toast, ToastPosition, ToastType} from 'bulma-toast'
 import router from './router';
+import store from './store'; // Import your Vuex store
 
 const axiosInstance = axios.create({
     // Your Axios configuration here
+    baseURL: 'http://localhost:7070',
+    // headers: {
+    //     common: {
+    //         'Authorization': `Bearer ${store.state.token}`
+    //     }
+    // }
 });
 
 axiosInstance.interceptors.response.use(

@@ -11,7 +11,7 @@ import $ from 'jquery';
 // CUSTOM axiosInstance
 import axiosInstance from "@/axios";
 
-axiosInstance.defaults.baseURL = 'http://localhost:7070'
+// axiosInstance.defaults.baseURL = 'http://localhost:7070'
 
 const app = createApp(App)
 // Use the router and store & MUST .use before MOUTING to (#app)

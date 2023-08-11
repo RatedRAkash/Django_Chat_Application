@@ -23,8 +23,8 @@ export default {
 
         // localStorage.removeItem('basicAuth'); // Remove BasicAuth from local storage
         localStorage.removeItem('user-info');
+        this.$store.commit('initializeAuth')
 
-        delete axiosInstance.defaults.headers.common['Authorization'];
         this.$router.push('/login'); // Redirect to Login Page
 
       } catch (error) {

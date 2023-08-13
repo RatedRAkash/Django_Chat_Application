@@ -90,7 +90,7 @@ local_settings.py
 
 .vscode
 .env
-/django_docker_project/.env
+/DjangoChatServer/.env
 /.venv
 *_venv/
 *venv/

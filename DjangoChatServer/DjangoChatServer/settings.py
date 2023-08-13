@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
+from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +33,13 @@ ALLOWED_HOSTS = ['*']
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/rooms/'
 LOGIN_URL = '/login/'
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+
+try:
+    load_dotenv(dotenv_path, verbose=True, override=True, encoding = 'utf_8')
+except UserWarning:
+    raise ImproperlyConfigured('.env file not found. Did you forget to add one?')
 
 # Application definition
 
@@ -56,10 +65,11 @@ INSTALLED_APPS = [
 
 # tik eitar jonno amra "Login, SignUp, LogOut" eigula CALL dite Parbo Nah FRONTEND chara... POSTMAN diyeo Call dite Parbo Nah
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:6060", #FrontEnd er URL eikane dibo jaate kore FrontEnd CORS bypass korte pare
+    os.getenv('FRONTEND_ALLOWED_URL'), #FrontEnd er URL eikane dibo jaate kore FrontEnd CORS bypass korte pare
 ]
 
 JWT_SECRET_KEY = "Sergio Ramos"
+os.getenv('JWT_SECRET_KEY')
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),  # Set the expiration time to 1 hour.
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),

@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from django.db.models import Q
 
 from .models import Product, Category
-from .serializers import ProductSerializer, CategorySerializer
+from .serializers import ProductSerializer, CategorySerializer, AllCategorySerializer
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -42,6 +42,14 @@ class SingleCategoryDetail(APIView):
         category = self.get_object(category_slug)
         serializer = CategorySerializer(category)
         return Response(serializer.data)
+
+
+class AllCategories(APIView):
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = AllCategorySerializer(categories, many=True)
+        return Response(serializer.data)
+
 
 class SearchProductsView(APIView):
     def post(self, request):

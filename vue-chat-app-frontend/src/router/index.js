@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '../store'
+
 import HomeView from '../views/HomeView.vue'
 
 import SingleChatRoom from '../views/chats/SingleChatRoom.vue'
@@ -44,7 +46,10 @@ const routes = [
     components: {
       default: AllRoomsView,
     },
-    props: true
+    props: true,
+    meta: {
+      requireLogin: true
+    }
   },
   {
     path: '/rooms/:room_slug',
@@ -52,7 +57,10 @@ const routes = [
     components: {
       default: SingleChatRoom,
     },
-    props: true
+    props: true,
+    meta: {
+      requireLogin: true
+    }
   },
 
   //single Product View Route
@@ -98,6 +106,16 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) =>{
+
+  //*** jei sokol URL ee Meta "requireLogin" define kora ase tader ke LOGIN Route ee niya jabo jodi LOGGED IN nah takhe ***
+  if(to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated){
+    next({name: 'Login', query:{to: to.path}});
+  }else{
+    next()
+  }
 })
 
 export default router

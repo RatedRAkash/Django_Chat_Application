@@ -81,8 +81,9 @@ export default {
 
       // Handle incoming messages from the WebSocket
       this.socket.onmessage = (event) => {
-        const message = JSON.parse(event.data);
+        const received_message = JSON.parse(event.data);
         // Process the received message here
+        console.log("Received Message:",received_message)
         this.getAllMessages()
       };
     },

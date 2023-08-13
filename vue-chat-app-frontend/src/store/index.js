@@ -27,7 +27,7 @@ export default createStore({
     },
 
     // setup JWT-headers to "axiosInstance"
-    initializeAuth(state) {
+    setAuthInfo(state) {
       if (localStorage.getItem('user-info')) {
         // Parse the JSON string back to an object
         const storedUserInfo = JSON.parse(localStorage.getItem('user-info'))

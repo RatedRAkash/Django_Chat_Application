@@ -68,9 +68,12 @@ export default {
         console.log(jwt_response.data);
 
         // Axios Header jeno bosaite pari
-        this.$store.commit('initializeAuth')
+        this.$store.commit('setAuthInfo')
 
-        this.$router.push('/'); // Redirect to HOME Page
+        // eita mane, amra LOGIN er agge jei Path ee chilam sheita URL theke `?to=` Path theke amra Path ta nibo... arr jodi URL ee kisu Nah takhe taile HOME Route('/') niye jabo
+        const toPath = this.$route.query.to || '/'
+        this.$router.push(toPath);
+        // this.$router.go(-1);
 
       } catch (error) {
         console.error(error);

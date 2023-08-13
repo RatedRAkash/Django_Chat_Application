@@ -7,7 +7,7 @@
             Welcome to HomePage
         </p>
         <p class="subtitle">
-            The Best Online Store
+            You can Chat in this site using Django Channels
         </p>
       </div>
     </section>

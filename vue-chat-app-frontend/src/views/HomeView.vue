@@ -4,7 +4,7 @@
     <section class="hero is-medium is-dark mb-6">
       <div class="hero-body has-text-centered">
         <p class="title mb-6">
-            Welcome to HomePage
+            Welcome to DjangoChat
         </p>
         <p class="subtitle">
             You can Chat in this site using Django Channels
@@ -14,17 +14,12 @@
 
     <div class="columns is-multiline">
       <div class="column is-12">
-        <h2 class="is-size-2 has-text-centered">Latest Products</h2>
+        <h1 class="is-size-2 has-text-centered">
+          <router-link to="/rooms"
+                       class="button is-dark mt-4 has-text-centered">Chat Now
+          </router-link>
+        </h1>
       </div>
-
-  <!--  Start of v-FOR Loop -->
-      <ProductBoxComponent
-        v-for="single_product in latestProducts"
-           v-bind:key="single_product.id"
-           v-bind:product_obj="single_product">
-      </ProductBoxComponent>
-  <!-- End of v-FOR Loop -->
-
     </div>
 
   </div>
@@ -34,12 +29,10 @@
 // @ is an alias to /src
 
 import axiosInstance from "@/axios.js";
-import ProductBoxComponent from "@/components/ProductBoxComponent.vue";
 
 export default {
   name: 'HomeView',
   components: {
-    ProductBoxComponent,
   },
   data(){
     return {

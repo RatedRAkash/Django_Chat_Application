@@ -6,6 +6,7 @@ import HomeView from '../views/HomeView.vue'
 import SingleChatRoom from '../views/chats/SingleChatRoom.vue'
 import AllRoomsView from '../views/chats/AllRoomsView.vue'
 
+import AllProducts from '../views/products/AllProducts.vue'
 import ProductView from '../views/products/ProductView.vue'
 import CategoryView from '../views/products/CategoryView.vue'
 import SearchView from '../views/products/SearchView.vue'
@@ -67,6 +68,14 @@ const routes = [
     }
   },
 
+  //Recent Products + All Categories
+  {
+    path: '/all-products',
+    name: 'AllProducts',
+    component: AllProducts,
+    props: true
+  },
+
   //single Product View Route
   {
     path: '/:category_slug/:product_slug',
@@ -83,7 +92,6 @@ const routes = [
     props: true
   },
 
-  //single Category View Route
   {
     path: '/search',
     name: 'Search',
@@ -91,7 +99,6 @@ const routes = [
     props: true
   },
 
-  //single Category View Route
   {
     path: '/cart',
     name: 'Cart',

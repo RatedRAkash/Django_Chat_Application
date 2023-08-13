@@ -39,9 +39,8 @@
 
       <!--     HAMBURGER MENU -->
       <div class="navbar-end">
-        <router-link to="/summer" class="navbar-item">Summer</router-link>
-        <router-link to="/winter" class="navbar-item">Winter</router-link>
         <router-link to="/rooms" class="navbar-item">Rooms</router-link>
+        <router-link to="/all-products" class="navbar-item">Products</router-link>
 
         <div class="navbar-item">
           <div class="buttons">

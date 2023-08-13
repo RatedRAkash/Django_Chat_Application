@@ -44,9 +44,15 @@
 
         <div class="navbar-item">
           <div class="buttons">
-            <router-link to="/login" v-if="!isAuthenticated" class="button is-light">Log In</router-link>
-            <router-link to="/signup" v-if="!isAuthenticated" class="button is-light">Sign Up</router-link>
-            <router-link to="/logout" v-if="isAuthenticated" class="button is-light">Log Out</router-link>
+
+            <template v-if="isAuthenticated">
+              <router-link to="/logout" class="button is-light">Log Out</router-link>
+            </template>
+
+            <template v-else>
+              <router-link to="/login" class="button is-light">Log In</router-link>
+              <router-link to="/signup" class="button is-light">Sign Up</router-link>
+            </template>
 
             <router-link to="/cart" class="button is-success">
               <span class="icon"><i class="fas fa-shopping-cart"></i></span>

@@ -80,14 +80,13 @@
 <script>
 
 import axiosInstance from "@/axios";
-
+import {mapState, mapMutations} from 'vuex'
 export default {
   name: 'App',
   components: {
   },
   data(){
     return {
-      isAuthenticated: false,
       showMobileMenu: false,
       cart:{
         items: []
@@ -96,6 +95,7 @@ export default {
   },
   beforeCreate() {
     this.$store.commit('initializeStore')
+    this.$store.commit('setAuthInfo')
 
     if (localStorage.getItem('user-info')) {
       // Parse the JSON string back to an object
@@ -107,13 +107,13 @@ export default {
   },
   mounted() {
     this.cart = this.$store.state.cart
-    if (localStorage.getItem('user-info')) {
-      this.isAuthenticated = true
-    }
   },
   methods: {
   },
   computed:{
+    //eita mane VUEX Store er `isAuthenticated` er sathe ei APP.vue er `isAuthenticated` value AUTO update huia jabe
+    ...mapState(['isAuthenticated']),
+
     cartTotalLength(){
       let totalLength = 0
 

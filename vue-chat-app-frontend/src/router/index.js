@@ -32,7 +32,11 @@ const routes = [
   {
     path: '/logout',
     name: 'Logout',
-    component: LogoutView
+    component: LogoutView,
+    // cause without Login you can not go to LOGOUT route
+    meta: {
+      requireLogin: true
+    }
   },
   {
     path: '/signup',

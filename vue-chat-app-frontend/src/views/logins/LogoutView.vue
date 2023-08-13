@@ -23,7 +23,7 @@ export default {
 
         // localStorage.removeItem('basicAuth'); // Remove BasicAuth from local storage
         localStorage.removeItem('user-info');
-        this.$store.commit('initializeAuth')
+        this.$store.commit('setAuthInfo')
 
         this.$router.push('/login'); // Redirect to Login Page
 

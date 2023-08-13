@@ -46,6 +46,11 @@ except UserWarning:
 INSTALLED_APPS = [
     'channels',
     'daphne',
+
+    # contrib.admin er upr bosano lagbe
+    # 'grappelli.dashboard',
+    # 'grappelli',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,6 +83,9 @@ SIMPLE_JWT = {
     "SIGNING_KEY": JWT_SECRET_KEY,
 }
 
+# GRAPPELLI configs
+GRAPPELLI_ADMIN_TITLE = 'DjangoChat Admin'
+GRAPPELLI_INDEX_DASHBOARD = 'DjangoChatServer.dashboard.CustomIndexDashboard'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

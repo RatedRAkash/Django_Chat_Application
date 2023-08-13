@@ -14,6 +14,7 @@ daphne==4.0.0
 defusedxml==0.7.1
 Django==4.2.3
 django-cors-headers==4.2.0
+django-grappelli==3.0.6
 django-templated-mail==1.1.1
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2

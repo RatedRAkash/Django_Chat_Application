@@ -46,7 +46,6 @@ export default {
         //   username: this.username,
         //   password: this.password,
         // });
-        // // const authToken = response.data.token;
         // const credentials = `${this.username}:${this.password}`;
         // const encodedCredentials = btoa(credentials); // Encode credentials to Base64
         //

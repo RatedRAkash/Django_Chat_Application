@@ -16,6 +16,7 @@ class CustomIndexDashboard(Dashboard):
     """
     Custom index dashboard for www.
     """
+
     def init_with_context(self, context):
         site_name = get_admin_site_name(context)
 
@@ -27,6 +28,25 @@ class CustomIndexDashboard(Dashboard):
             models=('django.contrib.auth.models.User',),
         ))
 
+        self.children.append(modules.Group(
+            _('ChatApp Data'),
+            column=1,
+            collapsible=True,
+            children=[
+                modules.ModelList(
+                    _('Rooms'),
+                    column=1,
+                    collapsible=False,
+                    models=('chatApp.models.Room',),
+                ),
+                modules.ModelList(
+                    _('Messages'),
+                    column=1,
+                    collapsible=False,
+                    models=('chatApp.models.Message',),
+                ),
+            ],
+        ))
 
         # append another link list module for "support".
         self.children.append(modules.LinkList(
